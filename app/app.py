@@ -119,5 +119,5 @@ def calculate_forecast():
 # Кнопка для расчета
 tk.Button(root, text="Рассчитать прогноз", command=calculate_forecast).pack()
 
-# Запуск интерфейса
+# Запуск интерфейса #####
 root.mainloop()
