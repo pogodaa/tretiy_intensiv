@@ -92,11 +92,14 @@ def main_recommend_tender_volume_(predictions, model_name):
     for predicted_price in predictions:
         recommended_volume = recommend_tender_volume(predicted_price, current_price)
         recommended_volumes.append(recommended_volume)
+        print(f"Предсказанная цена: {predicted_price}, Рекомендуемый объем: {recommended_volume}")  # Отладочная информация
 
+    # Проверка, есть ли рекомендованные объемы
+    if not recommended_volumes:
+        print("Не удалось рассчитать объем тендера: рекомендованные объемы пусты.")
+        return None  # Возвращаем None, если массив пустой
 
-    recommended_volumes = int(np.mean(recommended_volumes))
-
-    # Проверка предсказанных значений
-    perenos_()
-    print(f"Рекомендуемый объем тендера на арматуру by {model_name}: {recommended_volumes}\n")
-    print(f"Предсказанные цены by {model_name}: {predictions}")
+    # Возврат среднего рекомендованного объема
+    average_volume = int(np.mean(recommended_volumes))  # Возвращаем одно целое число
+    print(f"Средний рекомендованный объем: {average_volume}")  # Отладочная информация
+    return average_volume
